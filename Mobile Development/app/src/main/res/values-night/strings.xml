@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="belum_ada_akun">Belum memliki akun?</string>
+    <string name="login">Masuk</string>
+    <string name="email_must_be_valid">Email harus valid!!</string>
+    <string name="error_short_password">Password harus memiliki panjang minimal 8 karakter</string>
+    <string name="signup">Daftar</string>
+    <string name="sudah_ada_akun">Sudah memiliki akun?</string>
+    <string name="masuk_akun">Masuk disini !!</string>
+    <string name="name">Nama</string>
+    <string name="title_greeting_page">Wellcome to HerbaID</string>
+    <string name="message_login_desc">Mari Hidup Sehat Bersama HerbaID</string>
+    <string name="message_login_page">Silahkan untuk login terlebih dahulu !</string>
+    <string name="title_signup_page">Silahkan masukan data diri anda !</string>
+    <string name="greeting">Hallo, Dean</string>
+    <string name="dailyReminder">Keep Healthy!</string>
+    <string name="about">About</string>
+    <string name="home">Home</string>
+    <string name="recipe">Resep</string>
+</resources>
