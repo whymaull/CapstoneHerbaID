@@ -22,7 +22,7 @@ const getRecommendedRecipesFromDatabase = async (complaintType) => {
 
     querySnapshot.forEach((doc) => {
       const recipeData = doc.data();
-      const hasIngredient = recipeData.ingredients.some((ingredient) => ingredient.name.toLowerCase() === complaintType.toLowerCase());
+      const hasIngredient = recipeData.ingredients && recipeData.ingredients.some((ingredient) => ingredient.name && ingredient.name.toLowerCase() === complaintType.toLowerCase());
 
       if (hasIngredient) {
         recommendedRecipes.push({
