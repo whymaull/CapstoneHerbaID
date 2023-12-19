@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">HerbaID</string>
+    <string name="title_home">Home</string>
+    <string name="title_resep">Resep</string>
+    <string name="title_favorite">Favorit</string>
+    <string name="title_profile">Profil</string>
+
+
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="belum_ada_akun">Belum memliki akun?</string>
+    <string name="daftar_akun">Daftar Disini !!</string>
+    <string name="login">Masuk</string>
+    <string name="email_must_be_valid">Email harus valid!!</string>
+    <string name="signup">Daftar</string>
+    <string name="sudah_ada_akun">Sudah memiliki akun?</string>
+    <string name="masuk_akun">Masuk disini !!</string>
+    <string name="name">Nama</string>
+    <string name="title_greeting_page">Wellcome to HerbaID</string>
+    <string name="message_login_desc">Mari Hidup Sehat Bersama HerbaID</string>
+    <string name="message_login_page">Silahkan untuk login terlebih dahulu !</string>
+    <string name="title_signup_page">Silahkan masukan data diri anda !</string>
+    <string name="greeting">Hallo, Wahyu</string>
+    <string name="dailyReminder">Keep Healthy!</string>
+    <string name="about">About</string>
+    <string name="home">Home</string>
+    <string name="recipe">Resep</string>
+    <string name="halamanResep">Recipe</string>
+    <string name="viewDetail">View Detail</string>
+    <string name="bahanResep">Bahan-bahan</string>
+    <string name="caraBuat">Tahap-tahap Pembuatan</string>
+    <string name="namaResep">Nama Resep</string>
+    <string name="favorite">Favorit</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="herbalName">Nama Resep</string>
+    <string name="herbalIngredients">Bahan Resep</string>
+
+    <!-- Custom Edit Teks -->
+    <string name="error_empty_email">Masukkan Email Anda</string>
+    <string name="error_short_password">Password harus memiliki panjang minimal 8 karakter</string>
+    <string name="error_empty_password">Masukkan Password Anda</string>
+    <string name="error_invalid_email">Email anda tidak valid!</string>
+    <string name="password_salah">Password Salah</string>
+    <string name="invalid_password">Invalid password</string>
+    <string name="berhasil">success</string>
+    <string name="berhasil_login">Berhasil Login</string>
+    <string name="user_not_found">User not found</string>
+    <string name="email_dan_password_tidak_terdaftar">Email Dan Password Tidak Terdaftar</string>
+    <string name="error_empty_name">Masukkan Nama Anda</string>
+    <string name="success">null</string>
+    <string name="message_register_success">Daftar Berhasil</string>
+    <string name="email_is_already_taken">Email is already taken</string>
+    <string name="email_sudah_ada">Email Sudah digunakan</string>
+    <string name="userFavorite">Favorit</string>
+    <string name="action_upload">Upload Gambar</string>
+    <string name="action_take_pict">Ambil Gambar</string>
+    <string name="article">Artikel</string>
+    <string name="scan_herbal">Pelajari tentang tanaman herbal dan jenisnya bersama HerbaID</string>
+    <string name="btnLogout">Keluar</string>
+
+</resources>

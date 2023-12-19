@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "264358562871",
+    "project_id": "herbalid",
+    "storage_bucket": "herbalid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:264358562871:android:2092860dab79fdad5303b2",
+        "android_client_info": {
+          "package_name": "com.whymaull.herbaid"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfa7o29cxJN4xyB5ybW12KdxMSABr3YjM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:264358562871:android:44c664f8ba3548c95303b2",
+        "android_client_info": {
+          "package_name": "herbalID.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfa7o29cxJN4xyB5ybW12KdxMSABr3YjM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

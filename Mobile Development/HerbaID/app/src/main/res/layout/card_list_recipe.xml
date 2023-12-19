@@ -1,0 +1,87 @@
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView_Resep"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginEnd="8dp"
+    card_view:cardCornerRadius="4dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:background="@color/cardview_light_background">
+
+        <ImageView
+            android:id="@+id/imgResep"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:scaleType="fitXY"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/tvNamaResep"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_toEndOf="@id/imgResep"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintStart_toEndOf="@+id/imgResep"
+            card_view:layout_constraintTop_toTopOf="@+id/imgResep"
+            tools:text="@string/herbalName" />
+
+        <TextView
+            android:id="@+id/tvKomposisiResep"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            card_view:layout_constraintBottom_toTopOf="@+id/imgBtnFav"
+            card_view:layout_constraintEnd_toEndOf="@+id/tvNamaResep"
+            card_view:layout_constraintStart_toStartOf="@+id/tvNamaResep"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvNamaResep"
+            tools:text="@string/herbalIngredients" />
+
+        <ImageButton
+            android:id="@+id/imgBtnFav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:layout_marginBottom="8dp"
+            android:src="@drawable/baseline_favorite_border_24"
+            card_view:layout_constraintBottom_toBottomOf="@id/imgResep"
+            card_view:layout_constraintStart_toStartOf="@+id/tvKomposisiResep"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvKomposisiResep"
+            tools:ignore="ContentDescription" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/viewDetail"
+            card_view:layout_constraintBottom_toBottomOf="@+id/imgBtnFav"
+            card_view:layout_constraintEnd_toEndOf="@id/tvKomposisiResep"
+            card_view:layout_constraintStart_toEndOf="@id/imgBtnFav"
+            card_view:layout_constraintTop_toTopOf="@+id/imgBtnFav" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
