@@ -54,7 +54,8 @@ Before you begin, make sure you have the following software installed on your sy
 
 - **Endpoint**: `POST /api/auth/logout`
 - **Description**: Logout from user session.
-- **Headers**: `Authorization: Bearer <token_otentikasi>`
+- **Authorization**: 
+`Bearer token <token_otentikasi>`
 - **Request Body**:
 ```json
 {
@@ -78,7 +79,8 @@ Before you begin, make sure you have the following software installed on your sy
 - **Description**: Allows users to add complaints and get recipe recommendations based on the selected complaint.
 - **Headers**: 
 `Content-Type: application/json`
-`Authorization: Bearer <token_otentikasi>`
+- **Authorization**: 
+`Bearer token <token_otentikasi>`
 
 - **Request Body**:
 ```json
@@ -100,7 +102,8 @@ Before you begin, make sure you have the following software installed on your sy
 - **Description**: Get recipe recommendations based on the selected complaint.
 - **Headers**: 
 `Content-Type: application/json`
-`Authorization: Bearer <token_otentikasi>`
+- **Authorization**: 
+`Bearer token <token_otentikasi>`
 
 - **Request Body**:
 ```json
@@ -122,8 +125,8 @@ Before you begin, make sure you have the following software installed on your sy
 
 - **Endpoint**: `GET /api/recipes`
 - **Description**: Returns a list of all available recipes.
-- **Headers**: 
-`Authorization: Bearer <token_otentikasi>`
+- **Authorization**: 
+`Bearer token <token_otentikasi>`
 
 - **Response**:
 ```json
@@ -155,8 +158,8 @@ Before you begin, make sure you have the following software installed on your sy
 
 - **Endpoint**: `GET /api/user/favorites`
 - **Description**: Returns a list of recipes saved as favorites by a specific user.
-- **Headers**: 
-`Authorization: Bearer <token_otentikasi>`
+- **Authorization**: 
+`Bearer token <token_otentikasi>`
 
 - **Response**:
 ```json
@@ -171,7 +174,8 @@ Before you begin, make sure you have the following software installed on your sy
 - **Description**: Adds a recipe to a user's list of favorites.
 - **Headers**: 
 `Content-Type: application/json`
-`Authorization: Bearer <token_otentikasi>`
+- **Authorization**: 
+`Bearer token <token_otentikasi>`
 
 - **Request Body**:
 ```json
