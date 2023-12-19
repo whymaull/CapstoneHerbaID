@@ -1,31 +1,55 @@
-const { db, doc, getDoc } = require('../config/firebase');
+const { db, collection, doc, getDoc } = require("../config/firebase");
 
-// Mengambil data herbal dari database berdasarkan ID herbal
-exports.getHerbalData = async (herbalId) => {
+// Dapatkan data herbal berdasarkan ID
+const getHerbalById = async (herbalId) => {
   try {
-    const herbalRef = doc(db, 'herbals', herbalId);
+    if (!herbalId) {
+      throw new Error("Invalid herbal ID provided");
+    }
+
+    const herbalRef = doc(db, "herbals", herbalId);
     const herbalSnapshot = await getDoc(herbalRef);
 
     if (herbalSnapshot.exists()) {
-      const herbalData = herbalSnapshot.data();
-      const processedData = processHerbalData(herbalData);
-      return processedData;
+      return herbalSnapshot.data();
     } else {
-      throw new Error('Herbal not found');
+      throw new Error("Herbal not found");
     }
   } catch (error) {
     throw error;
   }
 };
 
-// Fungsi untuk memproses data herbal jika diperlukan
-const processHerbalData = (herbalData) => {
-  const processedData = {
-    herbalId: herbalData.herbalId,
-    name: herbalData.name,
-    imageURL: herbalData.imageURL,
-    about: herbalData.about,
-    benefits: herbalData.benefits,
-  };
-  return processedData;
+// Dapatkan data herbal berdasarkan nama herbal
+const getHerbalByName = async (herbalName) => {
+  try {
+    if (!herbalName) {
+      throw new Error("Invalid herbal name provided");
+    }
+
+    const herbalsRef = collection(db, "herbals");
+    let q;
+
+    if (herbalName) {
+      q = query(herbalsRef, where("name", "==", herbalName));
+    } else {
+      throw new Error("Invalid herbal name provided");
+    }
+
+    const querySnapshot = await getDocs(q);
+
+    if (!querySnapshot.empty) {
+      const herbalData = querySnapshot.docs[0].data();
+      return herbalData;
+    } else {
+      return null;
+    }
+  } catch (error) {
+    throw error;
+  }
+};
+
+module.exports = {
+  getHerbalById,
+  getHerbalByName,
 };
