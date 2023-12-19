@@ -186,5 +186,49 @@ Before you begin, make sure you have the following software installed on your sy
 }
 ```
 
+### Identifikasi Herbal
+
+#### Identifikasi Herbal dari Gambar
+
+- **Endpoint**: `POST /api/herbal/identify`
+- **Description**: Allows users to upload an image to identify the herbal content and retrieve information about it.
+- **Headers**: 
+`Content-Type: multipart/form-data`
+- **Authorization**: 
+`Bearer token <token_otentikasi>`
+
+- **Request Body**: Form Data
+`herbalImage: Image file for herbal identification`
+
+- **Response**:
+```json
+{
+  "herbalData": {
+    "herbalId": "id_herbal",
+    "name": "nama_herbal",
+    "imageURL": "url_gambar_herbal",
+    "about": "informasi_tentang_herbal",
+    "benefits": ["manfaat_1", "manfaat_2", "..."],
+    "recipeIds": ["id_resep_1", "id_resep_2", "..."]
+  },
+  "recipes": [
+    {
+      "recipeId": "id_resep",
+      "name": "nama_resep",
+      "imageURL": "url_gambar_resep",
+      "preparationTime": "waktu_persiapan",
+      "ingredients": [
+        {
+          "name": "nama_bahan",
+          "quantity": "jumlah",
+          "unit": "satuan"
+        }
+      ],
+      "instructions": ["langkah_1", "langkah_2", "..."],
+      "favoriteCount": "jumlah_favorite"
+    }
+  ]
+}
+```
 
 **Pastikan untuk mengganti `<token_otentikasi>` dengan token autentikasi yang sesuai saat melakukan request pada dokumentasi API.**
