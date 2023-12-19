@@ -1,33 +1,28 @@
-const { identifyHerbalML, saveImageToStorage } = require("../utils/imageProcessing");
 const { db, collection, query, where, getDocs } = require("../config/firebase");
 
-// Mengunggah gambar herbal ke storage
-exports.uploadImage = async (imageFile) => {
+// Fungsi untuk mendapatkan resep berdasarkan ID herbal dari koleksi 'Recipes'
+const getRecipesByHerbalId = async (herbalId) => {
   try {
-    const imageUrl = await saveImageToStorage(imageFile);
-    return imageUrl;
+    if (!herbalId) {
+      throw new Error("Invalid herbal ID provided");
+    }
+
+    const recipesRef = collection(db, "recipes");
+    const q = query(recipesRef, where("herbalId", "array-contains", herbalId));
+    const querySnapshot = await getDocs(q);
+
+    const recipes = [];
+    querySnapshot.forEach((doc) => {
+      const recipe = doc.data();
+      recipes.push(recipe);
+    });
+
+    return recipes;
   } catch (error) {
     throw error;
   }
 };
 
-// Mengidentifikasi herbal berdasarkan gambar menggunakan machine learning 
-exports.identifyHerbal = async (imageUrl) => {
-  try {
-    const identifiedHerbal = await identifyHerbalML(imageUrl); // Fungsi identifikasi menggunakan ML 
-
-    const herbalsRef = collection(db, "herbals");
-    const q = query(herbalsRef, where("name", "==", identifiedHerbal));
-    const querySnapshot = await getDocs(q);
-
-    if (querySnapshot.empty) {
-      throw new Error("Herbal not found");
-    }
-
-    // Mengambil data herbal dari Firestore
-    const herbalData = querySnapshot.docs[0].data();
-    return herbalData;
-  } catch (error) {
-    throw error;
-  }
+module.exports = {
+  getRecipesByHerbalId,
 };
