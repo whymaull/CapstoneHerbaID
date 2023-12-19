@@ -1,4 +1,4 @@
-const { db, collection, addDoc, getDocs } = require("../config/firebase");
+const { db, collection, addDoc, getDocs, query, where } = require("../config/firebase");
 
 const addComplaintToFirestore = async (complaintType, userId) => {
   try {
@@ -7,7 +7,7 @@ const addComplaintToFirestore = async (complaintType, userId) => {
       complaintType,
       userId,
     };
-    await addDoc(complaintsRef, newComplaint);
+    await addDoc(complaintsRef, newComplaint); 
     return { message: "Keluhan berhasil ditambahkan" };
   } catch (error) {
     throw error;
@@ -17,24 +17,19 @@ const addComplaintToFirestore = async (complaintType, userId) => {
 const getRecommendedRecipesFromDatabase = async (complaintType) => {
   try {
     const recipesRef = collection(db, "Recipes");
-    const querySnapshot = await getDocs(recipesRef);
+    const querySnapshot = await getDocs(query(recipesRef, where("complaintType", "==", complaintType)));
+
     const recommendedRecipes = [];
-
     querySnapshot.forEach((doc) => {
-      const recipeData = doc.data();
-      const hasIngredient = recipeData.ingredients && recipeData.ingredients.some((ingredient) => ingredient.name && ingredient.name.toLowerCase() === complaintType.toLowerCase());
-
-      if (hasIngredient) {
-        recommendedRecipes.push({
-          recipeId: doc.id,
-          name: recipeData.name,
-          imageURL: recipeData.imageURL,
-          preparationTime: recipeData.preparationTime,
-          ingredients: recipeData.ingredients,
-          instructions: recipeData.instructions,
-          favorite: recipeData.favorite || false,
-        });
-      }
+      recommendedRecipes.push({
+        recipeId: doc.id,
+        name: doc.data().name,
+        image: doc.data().image,
+        preparationTime: doc.data().preparationTime,
+        ingredients: doc.data().ingredients,
+        instructions: doc.data().instructions,
+        favorite: doc.data().favorite || false,
+      });
     });
 
     return recommendedRecipes;
@@ -42,6 +37,7 @@ const getRecommendedRecipesFromDatabase = async (complaintType) => {
     throw error;
   }
 };
+
 
 module.exports = {
   addComplaintToFirestore,
