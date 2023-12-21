@@ -1,4 +1,4 @@
-const { db, collection, getDocs } = require("../config/firebase");
+const { db, collection, getDocs, getDoc, doc } = require("../config/firebase");
 
 const getAllRecipes = async () => {
   try {
@@ -16,6 +16,22 @@ const getAllRecipes = async () => {
   }
 };
 
+const getRecipeById = async (recipeId) => {
+  try {
+    const recipeRef = doc(db, "Recipes", recipeId); 
+    const recipeDoc = await getDoc(recipeRef);
+
+    if (!recipeDoc.exists()) {
+      throw new Error("Recipe not found");
+    }
+
+    return { recipeId: recipeDoc.id, ...recipeDoc.data() };
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   getAllRecipes,
+  getRecipeById,
 };
