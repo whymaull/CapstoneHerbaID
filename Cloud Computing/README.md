@@ -123,7 +123,7 @@ Before you begin, make sure you have the following software installed on your sy
 
 #### Dapatkan Semua Resep
 
-- **Endpoint**: `GET /api/recipes`
+- **Endpoint**: `GET /api/recipe`
 - **Description**: Returns a list of all available recipes.
 - **Authorization**: 
 `Bearer token <token_otentikasi>`
