@@ -151,6 +151,34 @@ Before you begin, make sure you have the following software installed on your sy
 }
 ```
 
+#### Dapatkan Resep Berdasarkan ID
+
+- **Endpoint**: `GET /api/recipe/{id}`
+- **Description**: Returns recipe details based on the given recipe ID.
+- **Authorization**: 
+`Bearer token <token_otentikasi>`
+- **URL Parameters**: 
+`{id}: ID unik untuk resep yang ingin diambil.`
+
+- **Response**:
+```json
+{
+    "recipeId": "xcxvrZVhD8OPyeJrYGVb",
+    "name": "Sirup Thyme dan Madu",
+    "instructions": [
+        "Hancurkan daun thyme dan campur dengan madu.",
+        "Ambil 1 sendok teh campuran tersebut sesuai kebutuhan untuk meredakan batuk."
+    ],
+    "preparationTime": "5 menit",
+    "ingredients": [
+        "1 sendok makan daun thyme segar",
+        "2 sendok makan madu"
+    ],
+    "image": "https://storage.googleapis.com/image-recipe/Thyme%20and%20Honey%20Syrup.jpg",
+    "complaintType": "Batuk"
+}
+```
+
 
 ### Resep Favorit Pengguna
 
