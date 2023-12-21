@@ -70,6 +70,26 @@ Before you begin, make sure you have the following software installed on your sy
 }
 ```
 
+#### Detail Pengguna
+
+- **Endpoint**: `GET /api/auth/user/id`
+- **Description**: Returns user details based on the given user ID.
+- **Authorization**: 
+`Bearer token <token_otentikasi>`
+- **URL Parameters**: 
+`{id}: ID unik untuk resep yang ingin diambil.`
+
+- **Response**:
+```json
+{
+    "user": {
+        "userId": "TuDELE64TuPdTkyN6blNn0NM6093",
+        "username": "namauser14",
+        "email": "contoh14@mail.com"
+    }
+}
+```
+
 
 ### Keluhan dan Rekomendasi Resep Berdasarkan Keluhan
 
@@ -153,7 +173,7 @@ Before you begin, make sure you have the following software installed on your sy
 
 #### Dapatkan Resep Berdasarkan ID
 
-- **Endpoint**: `GET /api/recipe/{id}`
+- **Endpoint**: `GET /api/recipe/id`
 - **Description**: Returns recipe details based on the given recipe ID.
 - **Authorization**: 
 `Bearer token <token_otentikasi>`
