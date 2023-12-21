@@ -18,7 +18,17 @@ const getUserDetails = async (userId) => {
   }
 };
 
+const getUserDetailsById = async (userId) => {
+  try {
+    const userDetails = await UserModel.getUserById(userId);
+    return userDetails;
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   registerUser,
   getUserDetails,
+  getUserDetailsById,
 };
