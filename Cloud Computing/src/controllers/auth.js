@@ -1,6 +1,6 @@
 const { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, getDocs, db, collection, setDoc, doc } = require("../config/firebase");
 const jwt = require("jsonwebtoken");
-const { getUserByEmail } = require("../models/userModel");
+const { getUserByEmail, getUserById } = require("../models/userModel");
 
 // Daftar pengguna baru
 exports.signup = async (req, res) => {
@@ -9,7 +9,6 @@ exports.signup = async (req, res) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
 
-    //simpan informasi tambahan ke Firestore
     await addUserDataToFirestore(userCredential.user.uid, email, username);
 
     res.status(201).json(userCredential);
@@ -43,7 +42,6 @@ exports.signin = async (req, res) => {
       return res.status(401).json({ error: "User not found" });
     }
   } catch (error) {
-    // Tangani error jika login gagal
     if (error.code === "auth/wrong-password") {
       return exports.handleLoginError("Incorrect password", res);
     } else if (error.code === "auth/invalid-email") {
@@ -60,6 +58,23 @@ exports.logout = async (req, res) => {
   try {
     await signOut(auth);
     res.status(200).json({ message: "Logout successful" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// Mendapatkan detail pengguna berdasarkan ID
+exports.getUserDetailsById = async (req, res) => {
+  const userId = req.params.id;
+
+  try {
+    const user = await getUserById(userId);
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res.status(200).json({ user });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
