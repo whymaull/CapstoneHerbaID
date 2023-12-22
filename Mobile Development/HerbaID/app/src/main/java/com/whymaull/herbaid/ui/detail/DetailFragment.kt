@@ -1,57 +1,90 @@
 package com.whymaull.herbaid.ui.detail
 
-import androidx.lifecycle.ViewModelProvider
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
-import com.whymaull.herbaid.R
-import com.whymaull.herbaid.data.database.resep.Recipes
+import com.whymaull.herbaid.data.response.DetailRecipeResponse
 import com.whymaull.herbaid.databinding.FragmentDetailBinding
-import com.whymaull.herbaid.databinding.FragmentResepBinding
+import com.whymaull.herbaid.ui.ViewModelFactory
 
 class DetailFragment : Fragment() {
 
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
-    private lateinit var viewModel: DetailViewModel
+
+    private val viewModel by viewModels<DetailViewModel> {
+        ViewModelFactory.getInstance(requireContext())
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentDetailBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
-        val recipe = arguments?.getSerializable("recipe") as Recipes?
-        if (recipe != null) {
-            val imgGambarResep : ImageView = binding.imgResepDetail
-            Glide.with(this)
-                .load(recipe.image)
-                .into(imgGambarResep)
-            val tvNamaResep : TextView = binding.tvNamaResepDetail
-            tvNamaResep.text = recipe.name
-            val tvPreparationTime : TextView = binding.tvPrepTime
-            tvPreparationTime.text = recipe.preparationTime
-            val tvKomposisiResep : TextView = binding.tvBahanBahan
-            tvKomposisiResep.text = recipe.ingredients.toString()
-            val tvAllKomposisi : TextView = binding.tvAllBahan
-            tvAllKomposisi.text = recipe.ingredients.toString()
-            val tvCaraResep : TextView = binding.tvCaraResep
-            tvCaraResep.text = recipe.instructions.toString()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val id = arguments?.getString(EXTRA_NAME)
+        if (id != null) {
+            viewModel.getSession().observe(viewLifecycleOwner) { setting ->
+                if (setting.token.isNotEmpty()) {
+                    viewModel.getDetailRecipe(setting.token, id)
+                }
+            }
         }
 
-        return binding.root
+        viewModel.getDetailRecipe.observe(viewLifecycleOwner) { result ->
+            if (result != null) {
+                setDetailResep(result)
+            }
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun setDetailResep(result: DetailRecipeResponse) {
+        binding.apply {
+            tvNamaResepDetail.text = result.name
+            tvPrepTime.text = result.preparationTime
+            tvBahanBahan.text = result.ingredients?.size.toString()+" Bahan"
+            val ingredientsList = result.ingredients
+            if (!ingredientsList.isNullOrEmpty()) {
+                val ingredientsStringBuilder = StringBuilder()
+                for (ingredient in ingredientsList) {
+                    ingredientsStringBuilder.append("- $ingredient\n")
+                }
+                tvAllBahan.text =  ingredientsStringBuilder
+            }
+            val instructionsList = result.instructions
+            if (!instructionsList.isNullOrEmpty()) {
+                val instructionsStringBuilder = StringBuilder()
+                for ((index, instruction) in instructionsList.withIndex()) {
+                    instructionsStringBuilder.append("- $instruction\n")
+                }
+                tvCaraBuat.text = instructionsStringBuilder
+            }
+            Glide.with(this@DetailFragment)
+                .load(result.image)
+                .into(imgResepDetail)
+
+        }
     }
 
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        const val EXTRA_NAME = "extra_name"
     }
 
 }

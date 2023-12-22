@@ -13,9 +13,4 @@ class SplashViewModel(private val reps: UserRepository) : ViewModel() {
         return reps.getSession().asLiveData()
     }
 
-    fun logout() {
-        viewModelScope.launch {
-            reps.logout()
-        }
-    }
 }

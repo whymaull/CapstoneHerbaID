@@ -3,7 +3,6 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("kotlin-parcelize")
     id("com.google.gms.google-services")
-
 }
 
 android {
@@ -82,6 +81,9 @@ dependencies {
     implementation("com.google.firebase:firebase-firestore-ktx:24.10.0")
 
     implementation("com.google.code.gson:gson:2.10.1")
+
+    implementation("org.tensorflow:tensorflow-lite:2.8.0")
+
 
 
 }

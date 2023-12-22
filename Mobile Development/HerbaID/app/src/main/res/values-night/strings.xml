@@ -25,7 +25,7 @@
     <string name="about">About</string>
     <string name="home">Home</string>
     <string name="recipe">Resep</string>
-    <string name="halamanResep">Recipe</string>
+    <string name="halamanResep">Resep</string>
     <string name="viewDetail">View Detail</string>
     <string name="bahanResep">Bahan-bahan</string>
     <string name="caraBuat">Tahap-tahap Pembuatan</string>
@@ -57,5 +57,6 @@
     <string name="article">Artikel</string>
     <string name="scan_herbal">Pelajari tentang tanaman herbal dan jenisnya bersama HerbaID</string>
     <string name="btnLogout">Keluar</string>
+    <string name="save">Simpan</string>
 
 </resources>

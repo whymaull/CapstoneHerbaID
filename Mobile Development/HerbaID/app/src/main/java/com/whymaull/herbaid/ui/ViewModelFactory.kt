@@ -10,6 +10,7 @@ import com.whymaull.herbaid.ui.favorit.FavoriteViewModel
 import com.whymaull.herbaid.ui.home.HomeViewModel
 import com.whymaull.herbaid.ui.login.LoginViewModel
 import com.whymaull.herbaid.ui.profile.ProfileViewModel
+import com.whymaull.herbaid.ui.resep.ResepViewModel
 import com.whymaull.herbaid.ui.splash.SplashViewModel
 
 @Suppress("UNCHECKED_CAST")
@@ -23,12 +24,9 @@ class ViewModelFactory (private val reps: UserRepository) : ViewModelProvider.Ne
             modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
                 LoginViewModel(reps) as T
             }
-//            modelClass.isAssignableFrom(FavoriteViewModel::class.java) -> {
-//                FavoriteViewModel(reps) as T
-//            }
-//            modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
-//                HomeViewModel(reps) as T
-//            }
+            modelClass.isAssignableFrom(ResepViewModel::class.java) -> {
+                ResepViewModel(reps) as T
+            }
             modelClass.isAssignableFrom(DetailViewModel::class.java) -> {
                 DetailViewModel(reps) as T
             }

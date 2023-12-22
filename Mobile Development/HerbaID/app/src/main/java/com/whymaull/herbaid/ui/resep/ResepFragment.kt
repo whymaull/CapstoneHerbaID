@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,20 +18,21 @@ import com.whymaull.herbaid.R
 import com.whymaull.herbaid.data.adapter.RecipesAdapter
 import com.whymaull.herbaid.data.database.resep.Recipes
 import com.whymaull.herbaid.databinding.FragmentResepBinding
+import com.whymaull.herbaid.ui.ViewModelFactory
 
-@Suppress("UNCHECKED_CAST")
+
 class ResepFragment : Fragment() {
 
     private var _binding: FragmentResepBinding? = null
     private val binding get() = _binding!!
-    private val db = FirebaseFirestore.getInstance()
-    private val recipes = mutableListOf<Recipes>()
-    private lateinit var adapter: RecipesAdapter
 
+    private val viewModel by viewModels<ResepViewModel> {
+        ViewModelFactory.getInstance(requireContext())
+    }
 
     // This property is only valid between onCreateView and
     // onDestroyView.
-    @SuppressLint("MissingInflatedId", "NotifyDataSetChanged")
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -39,43 +41,35 @@ class ResepFragment : Fragment() {
 
         _binding = FragmentResepBinding.inflate(inflater, container, false)
         val view = binding.root
-
         val recyclerView : RecyclerView = view.findViewById(R.id.rv_resep)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-        adapter = RecipesAdapter(recipes)
+        val layoutManager = LinearLayoutManager(requireContext())
+        val adapter = RecipesAdapter()
+        recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
 
-        fetchDataFromFirestore()
         return view
+
     }
 
-    private fun fetchDataFromFirestore() {
-        db.collection("Recipes")
-            .get()
-            .addOnSuccessListener { result ->
-                processRecipes(result)
-            }
-            .addOnFailureListener { exception ->
-                Log.d("TAG", "Error getting documents: ", exception)
-            }
-    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    @SuppressLint("NotifyDataSetChanged")
-    private fun processRecipes(result: QuerySnapshot) {
-        for (document in result) {
-            val recipe = Recipes (
-                complaintType = document.get("complaintType") as? List<String>?,
-                image = document.getString("image"),
-                ingredients = document.get("ingredients") as? List<String>?,
-                instructions = document.get("instructions") as? List<String>?,
-                name = document.getString("name"),
-                preparationTime = document.getString("preparationTime"),
-                recipeId = document.getString("recipeId")
-            )
-            recipes.add(recipe)
+        val recyclerView : RecyclerView = view.findViewById(R.id.rv_resep)
+        val layoutManager = LinearLayoutManager(requireContext())
+        val adapter = RecipesAdapter()
+        recyclerView.layoutManager = layoutManager
+        recyclerView.adapter = adapter
+
+        viewModel.getSession().observe(viewLifecycleOwner) { setting ->
+            if (setting.token.isNotEmpty()) {
+                viewModel.getResep(setting.token)
+            }
         }
-        adapter.notifyDataSetChanged()
+
+        viewModel.listResep.observe(viewLifecycleOwner) { result ->
+            Log.i("DapetGa", "onViewCreated: $result")
+            adapter.submitList(result)
+        }
     }
 
     override fun onDestroyView() {

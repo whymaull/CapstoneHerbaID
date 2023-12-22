@@ -8,20 +8,20 @@
     android:layout_gravity="center"
     android:layout_marginTop="4dp"
     android:layout_marginBottom="4dp"
-    android:layout_marginStart="8dp"
-    android:layout_marginEnd="8dp"
-    card_view:cardCornerRadius="4dp">
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp"
+    card_view:cardCornerRadius="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="8dp"
+        android:padding="4dp"
         android:background="@color/cardview_light_background">
 
         <ImageView
             android:id="@+id/imgResep"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
             android:scaleType="fitXY"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
@@ -40,7 +40,6 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_toEndOf="@id/imgResep"
-            android:textSize="22sp"
             android:textStyle="bold"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintHorizontal_bias="0.0"
@@ -52,7 +51,7 @@
             android:id="@+id/tvKomposisiResep"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
             card_view:layout_constraintBottom_toTopOf="@+id/imgBtnFav"
             card_view:layout_constraintEnd_toEndOf="@+id/tvNamaResep"
@@ -73,9 +72,10 @@
             tools:ignore="ContentDescription" />
 
         <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:id="@+id/btnToDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
             android:text="@string/viewDetail"
             card_view:layout_constraintBottom_toBottomOf="@+id/imgBtnFav"
             card_view:layout_constraintEnd_toEndOf="@id/tvKomposisiResep"

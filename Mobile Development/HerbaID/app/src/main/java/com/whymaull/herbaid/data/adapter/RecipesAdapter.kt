@@ -1,55 +1,80 @@
 package com.whymaull.herbaid.data.adapter
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.whymaull.herbaid.R
 import com.whymaull.herbaid.data.database.resep.Recipes
+import com.whymaull.herbaid.data.response.RecipesItem
+import com.whymaull.herbaid.databinding.CardListRecipeBinding
 import com.whymaull.herbaid.ui.detail.DetailFragment
 
-// RecipeAdapter.kt
-class RecipesAdapter(private val recipes: List<Recipes>) : RecyclerView.Adapter<RecipesAdapter.ViewHolder>() {
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val recipeImage: ImageView = itemView.findViewById(R.id.imgResep)
-        val recipeName: TextView = itemView.findViewById(R.id.tvNamaResep)
-        val recipePreparationTime: TextView = itemView.findViewById(R.id.tvKomposisiResep)
-    }
+class RecipesAdapter() :ListAdapter<RecipesItem, RecipesAdapter.ViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.card_list_recipe, parent, false)
-        return ViewHolder(view)
+        val binding =
+            CardListRecipeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val recipe = recipes[position]
+        val resep = getItem(position)
+        holder.bind(resep)
+    }
 
-        // Setel data ke dalam CardView
-        Glide.with(holder.itemView.context).load(recipe.image).into(holder.recipeImage)
-        holder.recipeName.text = recipe.name
-        holder.recipePreparationTime.text = recipe.preparationTime
+    class ViewHolder(
+        private val binding: CardListRecipeBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+        @SuppressLint("SetTextI18n")
+        fun bind(resep: RecipesItem) {
+            binding.apply {
 
-        holder.itemView.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putSerializable("recipe", recipe)
+                tvNamaResep.text = resep.name
+                tvKomposisiResep.text = resep.ingredients?.size.toString()+" Bahan"
+                Glide.with(imgResep.context)
+                    .load(resep.image)
+                    .into(imgResep)
 
-            val detailResepFragment = DetailFragment()
-            detailResepFragment.arguments = bundle
-
-            val transaction = (holder.itemView.context as AppCompatActivity).supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.fragment_container, detailResepFragment)
-            transaction.addToBackStack(null)
-            transaction.commit()
+                btnToDetail.setOnClickListener{
+                    val mBundle = Bundle()
+                    mBundle.putString(DetailFragment.EXTRA_NAME, resep.recipeId)
+                    val mDetailFragment = DetailFragment()
+                    mDetailFragment.arguments = mBundle
+                    val mFragmentManager = (itemView.context as AppCompatActivity).supportFragmentManager
+                    mFragmentManager.beginTransaction().apply {
+                        replace(R.id.fragment_container, mDetailFragment, DetailFragment::class.java.simpleName)
+                        addToBackStack(null)
+                        commit()
+                    }
+                }
+            }
         }
     }
 
-    override fun getItemCount(): Int {
-        return recipes.size
+
+    companion object {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<RecipesItem>() {
+            override fun areItemsTheSame(oldItem: RecipesItem, newItem: RecipesItem): Boolean {
+                return oldItem == newItem
+            }
+
+            override fun areContentsTheSame(
+                oldItem: RecipesItem,
+                newItem: RecipesItem,
+            ): Boolean {
+                return oldItem == newItem
+            }
+        }
     }
 }

@@ -43,7 +43,7 @@
             android:layout_height="80dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:src="@drawable/profile"
+            android:src="@drawable/dummyprofile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription" />
@@ -66,7 +66,7 @@
                 android:layout_alignParentStart="true"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="8dp"
-                android:src="@drawable/tolist"
+                android:src="@drawable/downchevron"
                 tools:ignore="ContentDescription" />
 
             <androidx.appcompat.widget.SearchView
@@ -111,52 +111,70 @@
                 android:layout_marginEnd="32dp"
                 android:text="@string/scan_herbal"
                 android:textAlignment="center"
-                android:textSize="20sp"
+                android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/imgScan"
-                android:layout_width="0dp"
-                android:layout_height="300dp"
-                android:layout_marginStart="80dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="80dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/framescan"
+            <FrameLayout
+                android:id="@+id/frameScan"
+                android:layout_width="match_parent"
+                android:layout_height="330dp"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="50dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvScanHerbal"
-                tools:ignore="ContentDescription" />
+                app:layout_constraintTop_toBottomOf="@+id/tvScanHerbal">
+
+                <ImageView
+                    android:id="@+id/imgScan"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:background="@drawable/framescan"
+                    tools:ignore="ContentDescription" />
+
+
+                <ImageView
+                    android:id="@+id/imgUploaded"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    android:layout_marginTop="22dp"
+                    android:layout_marginBottom="22dp"
+                    android:layout_marginStart="30dp"
+                    android:layout_marginEnd="30dp"
+                    tools:ignore="ContentDescription" />
+
+            </FrameLayout>
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btnUpload"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
                 android:drawableTop="@drawable/upload"
                 android:text="@string/action_upload"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline"
                 app:layout_constraintStart_toStartOf="@+id/tvScanHerbal"
-                app:layout_constraintTop_toBottomOf="@+id/imgScan" />
+                app:layout_constraintTop_toBottomOf="@+id/frameScan" />
 
             <Button
                 android:id="@+id/btnTakePict"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="4dp"
                 android:layout_marginStart="8dp"
                 android:drawableTop="@drawable/takepict"
                 android:text="@string/action_take_pict"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/tvScanHerbal"
                 app:layout_constraintStart_toStartOf="@+id/guideline"
-                app:layout_constraintTop_toBottomOf="@+id/imgScan" />
+                app:layout_constraintTop_toBottomOf="@+id/frameScan" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline"

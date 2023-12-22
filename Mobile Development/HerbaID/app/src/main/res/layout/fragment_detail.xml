@@ -21,22 +21,28 @@
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabBack"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
         android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:src="@drawable/baseline_arrow_back_ios_24"
+        android:backgroundTint="@android:color/white"
+        android:gravity="center"
+        app:borderWidth="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/leftchevron"
+
         tools:ignore="ContentDescription" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@drawable/border_profile"
         android:layout_marginStart="32dp"
         android:layout_marginTop="88dp"
         android:layout_marginEnd="32dp"
+        android:elevation="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fabBack">
@@ -52,7 +58,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:text="@string/namaResep"
-            android:textSize="24sp"
+            android:textSize="22sp"
             android:textStyle="bold"
             android:textColor="@color/btnBg"
             android:textAlignment="center"/>
@@ -77,7 +83,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:drawablePadding="4dp"
-            app:drawableStartCompat="@drawable/logolist"
+            app:drawableStartCompat="@drawable/navresep"
             app:layout_constraintBottom_toBottomOf="@+id/tvPrepTime"
             app:layout_constraintStart_toEndOf="@+id/tvPrepTime"
             app:layout_constraintTop_toTopOf="@+id/tvPrepTime"
@@ -92,11 +98,11 @@
             android:layout_marginEnd="24dp"
             android:drawablePadding="4dp"
             app:drawableStartCompat="@drawable/baseline_favorite_border_24"
+            android:text="@string/save"
             app:layout_constraintBottom_toBottomOf="@+id/tvBahanBahan"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/tvBahanBahan"
-            app:layout_constraintTop_toTopOf="@+id/tvBahanBahan"
-            tools:text="Save" />
+            app:layout_constraintTop_toTopOf="@+id/tvBahanBahan"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -104,7 +110,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="142dp"
+        android:background="@drawable/border_detail"
         android:padding="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/fabBack"
@@ -112,23 +119,39 @@
         tools:layout_editor_absoluteX="0dp">
 
         <TextView
+            android:id="@+id/tvTagBahan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:text="@string/bahanResep"
+            android:textSize="16sp"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="32dp" />
+
+        <TextView
             android:id="@+id/tvAllBahan"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
-            android:textSize="24sp"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="32dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/tvTagBahan"
             tools:text="@string/bahanResep" />
 
         <TextView
-            android:id="@+id/tvCaraResep"
+            android:id="@+id/tvTagCaraBuat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="8dp"
             android:text="@string/caraBuat"
-            android:textSize="24sp"
+            android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@+id/tvAllBahan" />
+
+        <TextView
+            android:id="@+id/tvCaraBuat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/tvTagCaraBuat"
+            tools:text="@string/caraBuat" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
