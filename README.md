@@ -1,4 +1,6 @@
 <h1 align="center">CapstoneHerbaID</h1>
+![logo herbaID](https://github.com/whymaull/CapstoneHerbaID/assets/142073899/5d02d1d7-fc3c-420e-8c3d-0f257c1426d7)
+
 <h2 align="center">Application that helps you find herbal remedy/recipes according ingredients that users have at home or users issues like coughs, colds, dizziness, and more.</h2>
 
 # Team Members
