@@ -82,6 +82,7 @@ dependencies {
 
     implementation("com.google.code.gson:gson:2.10.1")
 
+    implementation("org.tensorflow:tensorflow-lite-support:0.3.0")
     implementation("org.tensorflow:tensorflow-lite:2.8.0")
 
 
