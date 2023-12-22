@@ -19,6 +19,8 @@ HerbaID is an innovative mobile application aimed at providing users with person
 # Preview App
 <p>
   <img src="https://github.com/whymaull/CapstoneHerbaID/blob/master/Mobile%20Development/HerbaID/Asset/logo.jpg?raw=true" width="20%"/>
+  <img src="https://github.com/whymaull/CapstoneHerbaID/blob/master/Mobile%20Development/HerbaID/Asset/4.jpg?raw=true" width="19%"/>
+  <img src="https://github.com/whymaull/CapstoneHerbaID/blob/master/Mobile%20Development/HerbaID/Asset/5.jpg?raw=true" width="19%"/>
   <img src="https://github.com/whymaull/CapstoneHerbaID/blob/master/Mobile%20Development/HerbaID/Asset/1.png?raw=true"/>
   <img src="https://github.com/whymaull/CapstoneHerbaID/blob/master/Mobile%20Development/HerbaID/Asset/2.png?raw=true"/>
   <img src="https://github.com/whymaull/CapstoneHerbaID/blob/master/Mobile%20Development/HerbaID/Asset/3.png?raw=true" width="60%" />
