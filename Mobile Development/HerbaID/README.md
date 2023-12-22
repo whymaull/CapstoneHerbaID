@@ -14,7 +14,7 @@ HerbaID is an innovative mobile application aimed at providing users with person
 - Postman for API Testing
 - POJO for Response Generator
 - Figma for Android UI Design
-- Firebase for Notification
+- Kotlin Programing langguage
 
 # Preview App
 <p>
