@@ -30,7 +30,7 @@ HerbaID is an innovative mobile application aimed at providing users with person
    Program.
   <br />
     <br />
-    <a href="https://docs.google.com/document/d/1npJJuspqjWDtG6pWSPVhmbHB614CbpCGWlmkAmNxyPY/edit?usp=sharing">Project Brief</a>
+    <a href="https://docs.google.com/document/d/12O4Dx9-VsILD6ekIOVIjbJSklN2qHyHS0EJyiIXG8CA/edit">Project Brief</a>
   ·
   <a href="https://youtu.be/fNBcGJOBvds">Video Presentation</a>
   ·
